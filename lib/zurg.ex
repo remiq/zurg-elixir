@@ -10,13 +10,11 @@ defmodule Zurg do
   end
 
   def solve({:right, [], _, history, time}) do
-    IO.inspect history
-    IO.inspect time
-    "Found here!"
+    {time, history}
   end
 
   def solve(state \\ @start) do
-    Enum.map next(state), fn state -> solve(state) end
+    List.flatten Enum.map(next(state), fn state -> solve(state) end)
   end
 
   def next({:left, src, dst, hist, time}) do
